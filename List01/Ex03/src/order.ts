@@ -17,8 +17,10 @@ class Order {
     return total;
   }
 
-  addProduct(product: Product): void {
-    this.products.push(product);
+  addProduct(product: Product, quantity: number): void {
+    for (let i = 0; i < quantity; i++) {
+      this.products.push(product);
+    }
   }
 
   finishOrder(): void {

@@ -10,7 +10,6 @@ const movie3 = new Movie("The Dark Knight", "Action", 152);
 const rental = new Rental(client);
 
 rental.rentMovie(movie1);
-rental.rentMovie(movie2);
 rental.rentMovie(movie3);
 
 rental.showRentedMovies();

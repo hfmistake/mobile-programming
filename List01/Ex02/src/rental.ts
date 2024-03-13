@@ -11,11 +11,13 @@ class Rental {
 
   rentMovie(movie: Movie): void {
     this.rented_movies.push(movie);
-    console.log(`The movie ${movie.title} was rented by ${this.client.name}`);
+    console.log(
+      `O filme ${movie.title} foi alugado para o cliente ${this.client.name}`,
+    );
   }
 
   showRentedMovies(): void {
-    console.log(`The movies rented by ${this.client.name} are:`);
+    console.log(`Os filmes alugados por ${this.client.name} são:`);
     this.rented_movies.forEach((movie) => {
       console.log(movie.title);
     });
