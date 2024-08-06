@@ -54,8 +54,10 @@ function Register() {
 
   return (
     <IonPage>
-      <IonContent>
-        <IonFabButton routerLink={"/users"}>Voltar</IonFabButton>
+      <IonContent className={"ion-padding"}>
+        <IonFabButton routerLink={"/users"} className={"ion-margin-bottom"}>
+          Voltar
+        </IonFabButton>
         <IonToast
           isOpen={showToast}
           onDidDismiss={() => setShowToast(false)}

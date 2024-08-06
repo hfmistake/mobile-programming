@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { useUserContext } from "../context/UserContext";
 import {
   IonAlert,
+  IonContent,
   IonFabButton,
   IonItem,
   IonItemOption,
   IonItemOptions,
   IonItemSliding,
   IonLabel,
+  IonList,
+  IonPage,
 } from "@ionic/react";
 import { useHistory } from "react-router-dom";
 
@@ -29,43 +32,45 @@ function Users() {
   }
 
   return (
-    <div>
-      <IonFabButton routerLink={"/register"}>Cadastrar</IonFabButton>
-      <IonAlert
-        isOpen={showAlert}
-        onDidDismiss={() => setShowAlert(false)}
-        header={"Confirmação de exclusão"}
-        message={"Tem certeza que deseja excluir este usuário?"}
-        buttons={[
-          {
-            text: "Cancelar",
-            role: "cancel",
-            handler: () => {
-              setItemToDelete(null);
+    <IonPage>
+      <IonContent className={"ion-padding"}>
+        <IonFabButton routerLink={"/register"}>Cadastrar</IonFabButton>
+        <IonAlert
+          isOpen={showAlert}
+          onDidDismiss={() => setShowAlert(false)}
+          header={"Confirmação de exclusão"}
+          message={"Tem certeza que deseja excluir este usuário?"}
+          buttons={[
+            {
+              text: "Cancelar",
+              role: "cancel",
+              handler: () => {
+                setItemToDelete(null);
+              },
             },
-          },
-          {
-            text: "Excluir",
-            handler: () => {
-              deleteUser(itemToDelete as number);
-              setItemToDelete(null);
+            {
+              text: "Excluir",
+              handler: () => {
+                deleteUser(itemToDelete as number);
+                setItemToDelete(null);
+              },
             },
-          },
-        ]}
-      />
+          ]}
+        />
 
-      <h1>Usuários</h1>
-      <ul>
-        {getUsers().map((user) => (
-          <li key={user.nome}>
-            <IonItemSliding>
+        <h1>Usuários</h1>
+        <IonList>
+          {getUsers().map((user) => (
+            <IonItemSliding key={user.id}>
               <IonItem button onClick={() => handleUserClick(user.id)}>
                 <IonLabel>{user.nome}</IonLabel>
               </IonItem>
               <IonItemOptions>
                 <IonItemOption
-                    onClick={() => navigate.push(`/edit/${user.id}`)}
-                >Editar</IonItemOption>
+                  onClick={() => navigate.push(`/edit/${user.id}`)}
+                >
+                  Editar
+                </IonItemOption>
                 <IonItemOption
                   color="danger"
                   onClick={() => handleDeleteUser(user.id)}
@@ -74,10 +79,10 @@ function Users() {
                 </IonItemOption>
               </IonItemOptions>
             </IonItemSliding>
-          </li>
-        ))}
-      </ul>
-    </div>
+          ))}
+        </IonList>
+      </IonContent>
+    </IonPage>
   );
 }
 

@@ -16,9 +16,12 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [users, setUsers] = useState<User[]>([]);
-
-  const addUser = (user: User) => { setUsers([...users, user]); };
-  const deleteUser = (id: number) => { setUsers(users.filter((user) => user.id !== id)); };
+  const addUser = (user: User) => {
+    setUsers([...users, user]);
+  };
+  const deleteUser = (id: number) => {
+    setUsers(users.filter((user) => user.id !== id));
+  };
   const getUser = (id: number) => users.find((user) => user.id === id);
   const getUsers = () => users;
   const editUser = (newUser: User, id: number) => {

@@ -54,7 +54,7 @@ function EditUser() {
 
   return (
     <IonPage>
-      <IonContent>
+      <IonContent className={"ion-padding"}>
         <IonFabButton routerLink={"/users"}>Voltar</IonFabButton>
         <IonToast
           isOpen={showToast}

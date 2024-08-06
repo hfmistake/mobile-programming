@@ -34,7 +34,7 @@ import "./theme/variables.css";
 import Register from "./pages/Register";
 import Users from "./pages/Users";
 import { UserProvider } from "./context/UserContext";
-import UserInfo from "./components/UserInfo";
+import UserInfo from "./pages/UserInfo";
 import React from "react";
 import EditUser from "./pages/EditUser";
 
