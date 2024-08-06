@@ -79,7 +79,7 @@ function UserForm({
           {errors.endereco && <span>{errors.endereco.message}</span>}
         </IonItem>
         <IonList className={"ion-padding"}>
-          <IonLabel>Genero</IonLabel>
+          <IonLabel>Gênero</IonLabel>
           <IonRadioGroup
             value={getValues("genero")}
             {...register("genero")}
@@ -162,7 +162,7 @@ function UserForm({
           </IonToggle>
         </IonItem>
         <IonButton type={"submit"} expand={"full"} shape={"round"}>
-          Enviar
+          Salvar
           <IonIcon icon={create}></IonIcon>
         </IonButton>
       </IonList>

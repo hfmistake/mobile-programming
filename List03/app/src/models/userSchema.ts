@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const userSchema = z.object({
   id: z.number().readonly(),
-  nome: z.string().min(1, "Nome não pode ser vazio"),
+  nome: z.string().min(1, "Por favor digite o nome"),
   idade: z.coerce
     .number({ invalid_type_error: "Por favor digite um número" })
     .min(1, "Por favor digite uma idade válida"),
