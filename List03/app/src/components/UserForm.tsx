@@ -11,6 +11,7 @@ import {
   IonRadioGroup,
   IonSelect,
   IonSelectOption,
+  IonText,
   IonToggle,
 } from "@ionic/react";
 import { create } from "ionicons/icons";
@@ -30,53 +31,63 @@ function UserForm({
       <IonList>
         <IonItem className={"ion-margin-bottom"}>
           <IonInput
+            className={`${errors.nome ? "ion-invalid ion-touched" : ""}`}
             aria-label={"Nome"}
             {...register("nome")}
             name={"nome"}
             type={"text"}
-            placeholder={"Nome"}
+            label={"Nome"}
+            labelPlacement={"floating"}
+            errorText={errors.nome?.message}
           />
-          {errors.nome && <span>{errors.nome.message}</span>}
         </IonItem>
         <IonItem className={"ion-margin-bottom"}>
           <IonInput
+            className={`${errors.idade ? "ion-invalid ion-touched" : ""}`}
             aria-label={"Idade"}
             {...register("idade")}
             name={"idade"}
-            type={"text"}
-            placeholder={"Idade"}
+            type={"number"}
+            label={"Idade"}
+            labelPlacement={"floating"}
+            errorText={errors.idade?.message}
           />
-          {errors.idade && <span>{errors.idade.message}</span>}
         </IonItem>
         <IonItem className={"ion-margin-bottom"}>
           <IonInput
+            className={`${errors.email ? "ion-invalid ion-touched" : ""}`}
             aria-label={"Email"}
             {...register("email")}
             name={"email"}
             type={"email"}
-            placeholder={"Email"}
+            label={"Email"}
+            labelPlacement={"floating"}
+            errorText={errors.email?.message}
           />
-          {errors.email && <span>{errors.email.message}</span>}
         </IonItem>
         <IonItem className={"ion-margin-bottom"}>
           <IonInput
+            className={`${errors.telefone ? "ion-invalid ion-touched" : ""}`}
             aria-label={"Telefone"}
             {...register("telefone")}
             name={"telefone"}
             type={"tel"}
-            placeholder={"Telefone"}
+            label={"Telefone"}
+            labelPlacement={"floating"}
+            errorText={errors.telefone?.message}
           />
-          {errors.telefone && <span>{errors.telefone.message}</span>}
         </IonItem>
         <IonItem className={"ion-margin-bottom"}>
           <IonInput
+            className={`${errors.endereco ? "ion-invalid ion-touched" : ""}`}
             aria-label={"Endereço"}
             {...register("endereco")}
             name={"endereco"}
             type={"text"}
-            placeholder={"Endereço"}
+            label={"Endereço"}
+            labelPlacement={"floating"}
+            errorText={errors.endereco?.message}
           />
-          {errors.endereco && <span>{errors.endereco.message}</span>}
         </IonItem>
         <IonList className={"ion-padding"}>
           <IonLabel>Gênero</IonLabel>
@@ -95,16 +106,24 @@ function UserForm({
               <IonRadio value={"outro"}>Outro</IonRadio>
             </IonItem>
           </IonRadioGroup>
-          {errors.genero && <span>{errors.genero.message}</span>}
+          {errors.genero && (
+            <IonText color={"danger"}>{errors.genero.message}</IonText>
+          )}
         </IonList>
         <IonItem>
-          <IonLabel>Cidade:</IonLabel>
           <IonSelect
             value={getValues("cidade")}
             {...register("cidade")}
-            placeholder={"Selecione uma cidade"}
-            labelPlacement={"end"}
+            labelPlacement={"floating"}
+            interface={"action-sheet"}
+            cancelText={"Cancelar"}
           >
+            <div slot="label">
+              Cidade{" "}
+              <IonText color={"danger"} className={"ion-padding"}>
+                {errors.cidade?.message}
+              </IonText>
+            </div>
             <IonSelectOption value={"sao-paulo"}>São Paulo</IonSelectOption>
             <IonSelectOption value={"rio-de-janeiro"}>
               Rio de Janeiro
@@ -114,7 +133,6 @@ function UserForm({
             </IonSelectOption>
             <IonSelectOption value={"outro"}>Outro</IonSelectOption>
           </IonSelect>
-          {errors.cidade && <span>{errors.cidade.message}</span>}
         </IonItem>
         <IonList className={"ion-padding"}>
           <IonLabel>Interesses</IonLabel>
@@ -161,7 +179,12 @@ function UserForm({
             <IonLabel>Receber notificações</IonLabel>
           </IonToggle>
         </IonItem>
-        <IonButton type={"submit"} expand={"full"} shape={"round"}>
+        <IonButton
+          type={"submit"}
+          expand={"full"}
+          shape={"round"}
+          className={"ion-margin"}
+        >
           Salvar
           <IonIcon icon={create}></IonIcon>
         </IonButton>

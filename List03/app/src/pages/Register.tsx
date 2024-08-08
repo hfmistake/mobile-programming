@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { IonContent, IonFabButton, IonPage, IonToast } from "@ionic/react";
+import {
+  IonBackButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToast,
+  IonToolbar,
+} from "@ionic/react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useUserContext } from "../context/UserContext";
@@ -54,10 +63,15 @@ function Register() {
 
   return (
     <IonPage>
+      <IonHeader translucent={true}>
+        <IonToolbar>
+          <IonTitle>Cadastrar</IonTitle>
+          <IonButtons slot="start">
+            <IonBackButton text={"Voltar"}></IonBackButton>
+          </IonButtons>
+        </IonToolbar>
+      </IonHeader>
       <IonContent className={"ion-padding"}>
-        <IonFabButton routerLink={"/users"} className={"ion-margin-bottom"}>
-          Voltar
-        </IonFabButton>
         <IonToast
           isOpen={showToast}
           onDidDismiss={() => setShowToast(false)}

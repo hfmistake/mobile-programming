@@ -45,11 +45,13 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonRouterOutlet>
         <UserProvider>
-          <Route path="/register" component={Register} exact={true} />
-          <Route path="/users" component={Users} exact={true} />
-          <Route exact path="/" render={() => <Redirect to="/users" />} />
-          <Route path="/users/:id" component={UserInfo} />
-          <Route path="/edit/:id" component={EditUser} />
+          <Route exact path={"/"}>
+            <Redirect to={"/users"} />
+          </Route>
+          <Route exact path={"/users/:id"} component={UserInfo} />
+          <Route exact path={"/users/:id/edit"} component={EditUser} />
+          <Route exact path={"/users"} component={Users} />
+          <Route exact path={"/register"} component={Register} />
         </UserProvider>
       </IonRouterOutlet>
     </IonReactRouter>

@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { IonContent, IonFabButton, IonPage, IonToast } from "@ionic/react";
+import {
+  IonBackButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToast,
+  IonToolbar,
+} from "@ionic/react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useUserContext } from "../context/UserContext";
@@ -54,8 +63,15 @@ function EditUser() {
 
   return (
     <IonPage>
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle>Editar Usuário</IonTitle>
+          <IonButtons>
+            <IonBackButton text={"Voltar"} />
+          </IonButtons>
+        </IonToolbar>
+      </IonHeader>
       <IonContent className={"ion-padding"}>
-        <IonFabButton routerLink={"/users"}>Voltar</IonFabButton>
         <IonToast
           isOpen={showToast}
           onDidDismiss={() => setShowToast(false)}
@@ -63,7 +79,6 @@ function EditUser() {
           duration={2000}
           color={toastColor}
         ></IonToast>
-        <h1>Editando {user.nome}</h1>
         <UserForm
           {...{
             register,

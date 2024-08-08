@@ -3,6 +3,13 @@ import StudentForm from "../components/StudentForm";
 import { useForm } from "react-hook-form";
 import { Student, studentSchema } from "../models/studentSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+} from "@ionic/react";
 
 function Register() {
   const {
@@ -35,18 +42,27 @@ function Register() {
   };
 
   return (
-    <StudentForm
-      {...{
-        register,
-        errors,
-        setValue,
-        getValues,
-        handleSubmit,
-        onSubmit,
-        onError,
-        handleCursosItem,
-      }}
-    />
+    <IonPage>
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle className={"ion-text-center"}>Cadastro de Aluno</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent className={"ion-padding"}>
+        <StudentForm
+          {...{
+            register,
+            errors,
+            setValue,
+            getValues,
+            handleSubmit,
+            onSubmit,
+            onError,
+            handleCursosItem,
+          }}
+        />
+      </IonContent>
+    </IonPage>
   );
 }
 

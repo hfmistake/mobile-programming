@@ -3,7 +3,10 @@ import { useUserContext } from "../context/UserContext";
 import {
   IonAlert,
   IonContent,
+  IonFab,
   IonFabButton,
+  IonHeader,
+  IonIcon,
   IonItem,
   IonItemOption,
   IonItemOptions,
@@ -11,8 +14,11 @@ import {
   IonLabel,
   IonList,
   IonPage,
+  IonTitle,
+  IonToolbar,
 } from "@ionic/react";
 import { useHistory } from "react-router-dom";
+import { add } from "ionicons/icons";
 
 function Users() {
   const { getUsers, deleteUser } = useUserContext();
@@ -33,8 +39,12 @@ function Users() {
 
   return (
     <IonPage>
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle>Usuários</IonTitle>
+        </IonToolbar>
+      </IonHeader>
       <IonContent className={"ion-padding"}>
-        <IonFabButton routerLink={"/register"}>Cadastrar</IonFabButton>
         <IonAlert
           isOpen={showAlert}
           onDidDismiss={() => setShowAlert(false)}
@@ -57,8 +67,6 @@ function Users() {
             },
           ]}
         />
-
-        <h1>Usuários</h1>
         <IonList>
           {getUsers().map((user) => (
             <IonItemSliding key={user.id}>
@@ -66,9 +74,7 @@ function Users() {
                 <IonLabel>{user.nome}</IonLabel>
               </IonItem>
               <IonItemOptions>
-                <IonItemOption
-                  onClick={() => navigate.push(`/edit/${user.id}`)}
-                >
+                <IonItemOption routerLink={`/users/${user.id}/edit`}>
                   Editar
                 </IonItemOption>
                 <IonItemOption
@@ -81,6 +87,16 @@ function Users() {
             </IonItemSliding>
           ))}
         </IonList>
+        <IonFab
+          vertical="bottom"
+          horizontal="end"
+          slot="fixed"
+          className={"ion-margin"}
+        >
+          <IonFabButton color="primary" routerLink={"/register"}>
+            <IonIcon icon={add} />
+          </IonFabButton>
+        </IonFab>
       </IonContent>
     </IonPage>
   );

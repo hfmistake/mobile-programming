@@ -8,6 +8,7 @@ import {
   IonItem,
   IonList,
   IonLabel,
+  IonText,
 } from "@ionic/react";
 import React from "react";
 
@@ -25,69 +26,72 @@ function StudentForm({
     <form onSubmit={handleSubmit(onSubmit, onError)}>
       <IonItem>
         <IonInput
+          className={`${errors.nome ? "ion-invalid ion-touched" : ""}`}
           {...register("nome")}
-          placeholder="Nome"
+          label={"Nome"}
           aria-label="Nome"
           type="text"
           name="nome"
+          labelPlacement={"floating"}
+          errorText={errors.nome?.message}
         />
-        {errors.nome && (
-          <span className={"ion-color-danger"}>{errors.nome.message}</span>
-        )}
       </IonItem>
       <IonItem>
-        <IonLabel>Sexo:</IonLabel>
         <IonSelect
           aria-label="Sexo"
           value={getValues("sexo")}
           {...register("sexo")}
-          placeholder={"Selecione o sexo"}
-          labelPlacement={"end"}
+          labelPlacement={"floating"}
+          interface={"action-sheet"}
+          cancelText={"Cancelar"}
         >
+          <div slot="label">
+            Sexo:
+            <IonText color="danger" className={"ion-padding"}>
+              {errors.sexo?.message}
+            </IonText>
+          </div>
           <IonSelectOption value={"masculino"}>Masculino</IonSelectOption>
           <IonSelectOption value={"feminino"}>Feminino</IonSelectOption>
         </IonSelect>
-        {errors.sexo && (
-          <span className={"ion-color-danger"}>{errors.sexo.message}</span>
-        )}
       </IonItem>
       <IonItem>
         <IonInput
+          className={`${errors.telefone ? "ion-invalid ion-touched" : ""}`}
           {...register("telefone")}
-          placeholder="Telefone"
           aria-label="Telefone"
           type={"tel"}
           name="telefone"
+          label={"Telefone"}
+          errorText={errors.telefone?.message}
+          labelPlacement={"floating"}
         />
-        {errors.telefone && (
-          <span className={"ion-color-danger"}>{errors.telefone.message}</span>
-        )}
       </IonItem>
       <IonItem>
         <IonInput
+          className={`${errors.matricula ? "ion-invalid ion-touched" : ""}`}
           {...register("matricula")}
-          placeholder="Matricula"
           aria-label="Matricula"
           type={"text"}
+          label={"Matricula"}
           name={"matricula"}
+          labelPlacement={"floating"}
+          errorText={errors.matricula?.message}
         />
-        {errors.matricula && (
-          <span className={"ion-color-danger"}>{errors.matricula.message}</span>
-        )}
       </IonItem>
       <IonItem>
-        <IonLabel>Bilingue</IonLabel>
         <IonToggle
-          {...register("bilingue")}
           checked={getValues("bilingue")}
           name="bilingue"
           onIonChange={(e) => setValue("bilingue", e.detail.checked)}
           aria-label="Bilíngue"
-        />
+        >
+          Bilíngue
+        </IonToggle>
       </IonItem>
-      <IonList>
+      <IonList className={"ion-padding"}>
         <IonLabel>Cursos</IonLabel>
-        <IonItem>
+        <IonItem className={"ion-margin-top"}>
           <IonCheckbox
             checked={getValues("cursos").includes("html")}
             onIonChange={() => handleCursosItem("html")}
@@ -112,11 +116,14 @@ function StudentForm({
           </IonCheckbox>
         </IonItem>
       </IonList>
-      <IonItem>
-        <IonButton type="submit" expand={"full"} shape={"round"}>
-          Cadastrar
-        </IonButton>
-      </IonItem>
+      <IonButton
+        type="submit"
+        expand={"full"}
+        shape={"round"}
+        className={"ion-margin-top"}
+      >
+        Cadastrar
+      </IonButton>
     </form>
   );
 }
