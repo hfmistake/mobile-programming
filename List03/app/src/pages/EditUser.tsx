@@ -66,7 +66,7 @@ function EditUser() {
       <IonHeader>
         <IonToolbar>
           <IonTitle>Editar Usuário</IonTitle>
-          <IonButtons>
+          <IonButtons slot={"start"}>
             <IonBackButton text={"Voltar"} />
           </IonButtons>
         </IonToolbar>
