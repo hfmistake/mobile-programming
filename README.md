@@ -10,7 +10,7 @@ Repositório para armazenar os códigos e projetos desenvolvidos na disciplina d
 
 - TypeScript v5
 - React Native v0.73
-- Ionic v7
+- Ionic v8
 - WebStorm v2024
 
 ## EN-US
@@ -23,5 +23,5 @@ Repository to store the codes and projects developed in the Mobile Programming d
 
 - TypeScript v5
 - React Native v0.73
-- Ionic v7
+- Ionic v8
 - WebStorm v2024
