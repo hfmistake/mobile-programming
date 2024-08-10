@@ -30,7 +30,7 @@ function Register() {
     console.log("Erro ao salvar usuário verifique os campos do formulário.");
   };
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: Student) => {
     console.log(data);
   };
   const handleCursosItem = (item: string) => {
@@ -48,7 +48,7 @@ function Register() {
           <IonTitle className={"ion-text-center"}>Cadastro de Aluno</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className={"ion-padding"}>
+      <IonContent className={"ion-padding"} fullscreen>
         <StudentForm
           {...{
             register,

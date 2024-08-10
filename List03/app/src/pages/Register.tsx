@@ -45,7 +45,7 @@ function Register() {
     setToastColor("danger");
   };
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: User) => {
     addUser(data);
     setShowToast(true);
     setToastMessage("Usuário salvo com sucesso");

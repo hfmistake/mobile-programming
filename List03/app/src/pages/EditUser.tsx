@@ -21,9 +21,6 @@ function EditUser() {
 
   const { getUser, editUser } = useUserContext();
   const user = getUser(Number(id));
-  if (!user) {
-    return <h1>Usuário não encontrado</h1>;
-  }
 
   const {
     handleSubmit,
@@ -46,7 +43,7 @@ function EditUser() {
     setToastColor("danger");
   };
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: User) => {
     setShowToast(true);
     setToastMessage("Usuário editado com sucesso");
     setToastColor("success");
@@ -61,6 +58,9 @@ function EditUser() {
     setValue("interesses", newInteresses);
   };
 
+  if (!user) {
+    return <h1>Usuário não encontrado</h1>;
+  }
   return (
     <IonPage>
       <IonHeader>
