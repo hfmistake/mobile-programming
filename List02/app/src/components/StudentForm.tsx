@@ -11,6 +11,26 @@ import {
   IonText,
 } from "@ionic/react";
 import React from "react";
+import {
+  FieldErrors,
+  SubmitHandler,
+  UseFormGetValues,
+  UseFormHandleSubmit,
+  UseFormRegister,
+  UseFormSetValue,
+} from "react-hook-form";
+import { Student } from "../models/studentSchema";
+
+interface FormProps {
+  register: UseFormRegister<Student>;
+  errors: FieldErrors<Student>;
+  setValue: UseFormSetValue<Student>;
+  getValues: UseFormGetValues<Student>;
+  handleSubmit: UseFormHandleSubmit<Student>;
+  onSubmit: SubmitHandler<Student>;
+  onError: (errors: object) => void;
+  handleCursosItem: (item: string) => void;
+}
 
 function StudentForm({
   register,
@@ -21,7 +41,7 @@ function StudentForm({
   onSubmit,
   onError,
   handleCursosItem,
-}: any) {
+}: FormProps) {
   return (
     <form onSubmit={handleSubmit(onSubmit, onError)}>
       <IonItem>

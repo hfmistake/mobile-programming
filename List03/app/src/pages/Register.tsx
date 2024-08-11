@@ -9,7 +9,7 @@ import {
   IonToast,
   IonToolbar,
 } from "@ionic/react";
-import { useForm } from "react-hook-form";
+import { FieldErrors, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useUserContext } from "../context/UserContext";
 import { userSchema, User } from "../models/userSchema";
@@ -39,10 +39,11 @@ function Register() {
   const [toastMessage, setToastMessage] = useState("");
   const [toastColor, setToastColor] = useState("");
 
-  const onError = () => {
+  const onError = (errors: FieldErrors<User>) => {
     setShowToast(true);
     setToastMessage("Erro ao salvar usuário");
     setToastColor("danger");
+    console.error(errors);
   };
 
   const onSubmit = (data: User) => {
@@ -67,7 +68,7 @@ function Register() {
         <IonToolbar>
           <IonTitle>Cadastrar</IonTitle>
           <IonButtons slot="start">
-            <IonBackButton text={"Voltar"}></IonBackButton>
+            <IonBackButton text={"Voltar"} defaultHref={"/users"} />
           </IonButtons>
         </IonToolbar>
       </IonHeader>

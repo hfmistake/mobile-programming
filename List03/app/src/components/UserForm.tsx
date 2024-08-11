@@ -15,6 +15,26 @@ import {
   IonToggle,
 } from "@ionic/react";
 import { create } from "ionicons/icons";
+import {
+  FieldErrors,
+  SubmitHandler,
+  UseFormGetValues,
+  UseFormHandleSubmit,
+  UseFormRegister,
+  UseFormSetValue,
+} from "react-hook-form";
+import { User } from "../models/userSchema";
+
+interface UserFormProps {
+  register: UseFormRegister<User>;
+  errors: FieldErrors<User>;
+  setValue: UseFormSetValue<User>;
+  getValues: UseFormGetValues<User>;
+  handleSubmit: UseFormHandleSubmit<User>;
+  onSubmit: SubmitHandler<User>;
+  onError: (errors: object) => void;
+  handleInteresseItem: (item: string) => void;
+}
 
 function UserForm({
   register,
@@ -25,7 +45,7 @@ function UserForm({
   onSubmit,
   onError,
   handleInteresseItem,
-}: any) {
+}: UserFormProps) {
   return (
     <form onSubmit={handleSubmit(onSubmit, onError)}>
       <IonList>

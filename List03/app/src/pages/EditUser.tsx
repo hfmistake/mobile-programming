@@ -37,10 +37,11 @@ function EditUser() {
   const [toastMessage, setToastMessage] = useState("");
   const [toastColor, setToastColor] = useState("");
 
-  const onError = () => {
+  const onError = (errors: object) => {
     setShowToast(true);
     setToastMessage("Erro ao editar usuário");
     setToastColor("danger");
+    console.error(errors);
   };
 
   const onSubmit = (data: User) => {
@@ -67,7 +68,7 @@ function EditUser() {
         <IonToolbar>
           <IonTitle>Editar Usuário</IonTitle>
           <IonButtons slot={"start"}>
-            <IonBackButton text={"Voltar"} />
+            <IonBackButton text={"Voltar"} defaultHref={"/users"} />
           </IonButtons>
         </IonToolbar>
       </IonHeader>

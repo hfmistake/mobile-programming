@@ -1,6 +1,6 @@
 import React from "react";
 import StudentForm from "../components/StudentForm";
-import { useForm } from "react-hook-form";
+import { FieldErrors, useForm } from "react-hook-form";
 import { Student, studentSchema } from "../models/studentSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -26,8 +26,9 @@ function Register() {
     },
   });
 
-  const onError = () => {
+  const onError = (errors: FieldErrors<Student>) => {
     console.log("Erro ao salvar usuário verifique os campos do formulário.");
+    console.log(errors);
   };
 
   const onSubmit = (data: Student) => {

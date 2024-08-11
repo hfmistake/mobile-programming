@@ -46,7 +46,7 @@ function UserInfo() {
         <IonToolbar>
           <IonTitle>Detalhes do Usuário</IonTitle>
           <IonButtons slot={"start"}>
-            <IonBackButton text={"Voltar"} />
+            <IonBackButton text={"Voltar"} defaultHref={"/users"} />
           </IonButtons>
         </IonToolbar>
       </IonHeader>
