@@ -62,6 +62,8 @@ const Products: React.FC = () => {
         setProducts(products);
       })
       .catch(() => {
+        setToastColor("danger");
+        setToastMessage("Erro ao atualizar produtos");
         setShowToast(true);
       })
       .finally(() => event.detail.complete());
