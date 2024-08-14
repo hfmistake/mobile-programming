@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   IonBackButton,
   IonButtons,
@@ -16,13 +16,23 @@ import {
 } from "@ionic/react";
 import { useParams } from "react-router";
 import { useProductContext } from "../context/UseProductContext";
+import { Product } from "../models/productSchema";
 
 const ViewProduct: React.FC = () => {
   const { id } = useParams<{ id: string }>();
 
-  const { products } = useProductContext();
+  const { getProduct } = useProductContext();
 
-  const product = products.find((product) => product.id === Number(id));
+  const [product, setProduct] = React.useState<Product | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      const product = await getProduct(Number(id));
+      setProduct(product);
+    })().catch((error) => {
+      console.error(error);
+    });
+  }, [getProduct, id]);
 
   const formatPrice = (price: number) => {
     return price.toLocaleString("pt-br", {
@@ -85,7 +95,9 @@ const ViewProduct: React.FC = () => {
             </IonItem>
             <IonItem>
               <IonLabel slot={"start"}>Preço</IonLabel>
-              <IonLabel slot={"end"}>{formatPrice(Number(product.price))}</IonLabel>
+              <IonLabel slot={"end"}>
+                {formatPrice(Number(product.price))}
+              </IonLabel>
             </IonItem>
           </IonCardContent>
         </IonCard>

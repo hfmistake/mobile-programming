@@ -1,7 +1,8 @@
 import Axios from "axios";
 
+const URL_API = "http://localhost:8000";
 export const axios = Axios.create({
-  baseURL: "https://mobileapi-production-0b1c.up.railway.app",
+  baseURL: URL_API,
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",

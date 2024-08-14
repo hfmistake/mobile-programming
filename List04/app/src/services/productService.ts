@@ -13,7 +13,7 @@ export const addProduct = async (product: Product) => {
 
 export const getProduct = async (id: number) => {
   const response = await axios.get(`/products/${id}`);
-  return response.data as Product;
+  return response.data["product"] as Product;
 };
 
 export const deleteProduct = async (id: number) => {
