@@ -34,7 +34,6 @@ const EditProduct: React.FC = () => {
     reset,
   } = useForm<Product>({
     resolver: zodResolver(productSchema),
-    defaultValues: product,
   });
 
   useEffect(() => {
