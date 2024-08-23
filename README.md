@@ -17,7 +17,7 @@ Repositório para armazenar os códigos e projetos desenvolvidos na disciplina d
 
 ### Description
 
-Repository to store the codes and projects developed in the Mobile Programming discipline.
+Repository to store the codes and projects developed in the Mobile Programming subject.
 
 ### Technologies
 
