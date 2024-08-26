@@ -1,0 +1,40 @@
+:root {
+    --primary: var(--ion-color-primary-shade);
+}
+
+.header-label {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+
+.checkbox {
+    --size: 32px;
+    --checkbox-background-checked: var(--ion-color-dark-shade);
+    --checkbox-background: var(--ion-color-dark-shade);
+}
+
+.checkbox::part(container) {
+    border-radius: 6px;
+}
+
+.row {
+    border: 1px solid var(--ion-color-dark);
+}
+
+.header-row {
+    --background: var(--ion-color-dark-contrast); /* cor de fundo para o header */
+    border: 2px solid var(--ion-color-dark); /* linha separadora do header */
+}
+
+.odd-row {
+    --background: var(--ion-color-tertiary-shade); /* cor de fundo para linhas ímpares */
+}
+
+.even-row {
+    --background: var(--ion-color-primary-shade); /* cor de fundo para linhas pares */
+}
+
+.ion-text-center {
+    padding: 10px; /* aumentar o espaçamento das células */
+}

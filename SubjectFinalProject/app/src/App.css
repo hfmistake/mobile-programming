@@ -1,0 +1,19 @@
+ion-alert input[type="number"]::-webkit-inner-spin-button,
+ion-alert input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+ion-alert input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+ion-input input[type="number"]::-webkit-inner-spin-button,
+ion-input input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+ion-input input[type="number"] {
+    -moz-appearance: textfield;
+}
