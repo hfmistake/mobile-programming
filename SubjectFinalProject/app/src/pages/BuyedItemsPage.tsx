@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {
   AlertInput,
   IonAlert,
-  IonContent,
+  IonContent, IonFab, IonFabButton, IonIcon,
   IonPage,
   IonToast,
 } from "@ionic/react";
@@ -10,6 +10,7 @@ import DisplayItems from "../components/DisplayItems";
 import { useItemContext } from "../context/UseItemContext";
 import { Item, itemSchema } from "../models/itemSchema";
 import { FieldValues } from "react-hook-form";
+import {add} from "ionicons/icons";
 
 const BuyedItemsPage: React.FC = () => {
   const {
@@ -76,6 +77,7 @@ const BuyedItemsPage: React.FC = () => {
   const putItem = async (id: number, item: Item) => {
     await updateItem(id.toString(), item).catch((error) => {
       console.error(error);
+      throw error
     });
     await loadItems();
   };
@@ -87,6 +89,7 @@ const BuyedItemsPage: React.FC = () => {
   const postItem = async (item: Item) => {
     await createItem(item).catch((error) => {
       console.error(error);
+      throw error
     });
     await loadItems();
   };
@@ -283,6 +286,13 @@ const BuyedItemsPage: React.FC = () => {
         color={toastColor}
         onDidDismiss={() => setShowToast(false)}
       />
+      <IonFab vertical="bottom" horizontal="end" className={"ion-padding"}>
+        <IonFabButton color="primary" onClick={() => {
+          handleCreateItem()
+        }}>
+          <IonIcon icon={add} />
+        </IonFabButton>
+      </IonFab>
     </IonPage>
   );
 };

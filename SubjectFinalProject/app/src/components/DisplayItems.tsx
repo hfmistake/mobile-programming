@@ -3,9 +3,6 @@ import { Item } from "../models/itemSchema";
 import "./DisplayItems.css";
 import {
   IonCheckbox,
-  IonFab,
-  IonFabButton,
-  IonIcon,
   IonItem,
   IonItemOption,
   IonItemOptions,
@@ -13,7 +10,6 @@ import {
   IonLabel,
   IonList,
 } from "@ionic/react";
-import { add } from "ionicons/icons";
 
 interface DisplayItemsProps {
   items: Item[];
@@ -28,8 +24,8 @@ const DisplayItems: React.FC<DisplayItemsProps> = ({
   handleItemStatus,
   handleDeleteItem,
   handleEditItem,
-  handleCreateItem,
 }) => {
+  const totalPrice = items.reduce((total, item) => total + item.price * item.quantity, 0);
   return (
     <>
       <IonList class="ion-padding">
@@ -82,13 +78,12 @@ const DisplayItems: React.FC<DisplayItemsProps> = ({
           </IonItemSliding>
         ))}
       </IonList>
-      <IonFab vertical="bottom" horizontal="end" className={"ion-padding"}>
-        <IonFabButton color="primary" onClick={() => {
-          handleCreateItem()
-        }}>
-          <IonIcon icon={add} />
-        </IonFabButton>
-      </IonFab>
+      <IonItem className="ion-text-end">
+        <IonLabel>
+          Totalizado na lista: {totalPrice.toFixed(2)} R$
+        </IonLabel>
+      </IonItem>
+
     </>
   );
 };

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {
   AlertInput,
   IonAlert,
-  IonContent,
+  IonContent, IonFab, IonFabButton, IonIcon,
   IonPage,
   IonToast,
 } from "@ionic/react";
@@ -10,6 +10,7 @@ import DisplayItems from "../components/DisplayItems";
 import { useItemContext } from "../context/UseItemContext";
 import { Item, itemSchema } from "../models/itemSchema";
 import { FieldValues } from "react-hook-form";
+import {add} from "ionicons/icons";
 
 const ToBuyItemsPage: React.FC = () => {
   const { tobuyItems, buyItem, loadItems, deleteItem, updateItem, createItem } =
@@ -70,6 +71,7 @@ const ToBuyItemsPage: React.FC = () => {
   const putItem = async (id: number, item: Item) => {
     await updateItem(id.toString(), item).catch((error) => {
       console.error(error);
+      throw new Error("Erro ao conectar-se com o servidor!");
     });
     await loadItems();
   };
@@ -81,6 +83,7 @@ const ToBuyItemsPage: React.FC = () => {
   const postItem = async (item: Item) => {
     await createItem(item).catch((error) => {
       console.error(error);
+      throw new Error("Erro ao conectar-se com o servidor!");
     });
     await loadItems();
   };
@@ -88,14 +91,17 @@ const ToBuyItemsPage: React.FC = () => {
   const generateItemInputs = (item: Item) => {
     return [
       {
+        name: "name",
         placeholder: "Nome: " + item.name,
         type: "text",
       },
       {
+        name: "quantity",
         placeholder: "Quantidade: " + item.quantity.toString(),
         type: "number",
       },
       {
+        name: "price",
         placeholder: "Preço: " + item.price.toString(),
         type: "number",
       },
@@ -104,9 +110,9 @@ const ToBuyItemsPage: React.FC = () => {
 
   const editHandler = async (alertData: FieldValues) => {
     const newItem: Item = {
-      name: alertData["0"],
-      quantity: alertData["1"],
-      price: alertData["2"],
+      name: alertData.name,
+      quantity: alertData.quantity,
+      price: alertData.price,
     };
     if (!itemSchema.safeParse(newItem).success) {
       setShowCreateAlert(false);
@@ -147,9 +153,9 @@ const ToBuyItemsPage: React.FC = () => {
 
   const createHandler = async (alertData: FieldValues) => {
     const newItem: Item = {
-      name: alertData["0"],
-      quantity: alertData["1"],
-      price: alertData["2"],
+      name: alertData.name,
+      quantity: alertData.quantity,
+      price: alertData.price,
     };
     if (!itemSchema.safeParse(newItem).success) {
       setShowCreateAlert(false);
@@ -242,14 +248,17 @@ const ToBuyItemsPage: React.FC = () => {
           showCreateAlert
             ? ([
                 {
+                  name: "name",
                   placeholder: "Nome",
                   type: "text",
                 },
                 {
+                  name: "quantity",
                   placeholder: "Quantidade",
                   type: "number",
                 },
                 {
+                  name: "price",
                   placeholder: "Preço",
                   type: "number",
                 },
@@ -278,6 +287,13 @@ const ToBuyItemsPage: React.FC = () => {
         color={toastColor}
         onDidDismiss={() => setShowToast(false)}
       />
+      <IonFab vertical="bottom" horizontal="end" className={"ion-padding"}>
+        <IonFabButton color="primary" onClick={() => {
+          handleCreateItem()
+        }}>
+          <IonIcon icon={add} />
+        </IonFabButton>
+      </IonFab>
     </IonPage>
   );
 };

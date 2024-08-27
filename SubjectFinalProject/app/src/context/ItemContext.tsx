@@ -47,7 +47,7 @@ export const ItemProvider: React.FC<{ children: ReactNode }> = ({
         setBuyedItems(items.filter((item) => item.buyed));
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }, []);
 
@@ -81,12 +81,14 @@ export const ItemProvider: React.FC<{ children: ReactNode }> = ({
   const removeItem = useCallback(async (id: string) => {
     return await deleteItem(id).catch((error) => {
       console.error("Error ocurred in removeItem", error);
+      throw new Error("Error ocurred in removeItem")
     });
   }, []);
 
   const editItem = useCallback(async (id: string, item: Item) => {
     return await updateItem(id, item).catch((error) => {
       console.error("Error occurred in updateItem", error);
+      throw new Error("Error occurred in updateItem");
     });
   }, []);
 

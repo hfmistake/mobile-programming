@@ -7,7 +7,7 @@ export const getCurrentUser = async () => {
 };
 export const register = async (user: User) => {
   await axios.post("/register", user).catch((err) => {
-    console.log(err);
+    console.error(err)
     throw err;
   });
 };

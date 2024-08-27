@@ -23,7 +23,7 @@ const AddItemPage: React.FC = () => {
     await createItem(data)
       .then(() => loadItems())
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
 
